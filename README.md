@@ -1,7 +1,20 @@
-# Global Mindset
+# Global Mindset — Starter
 
-Starter repository for the Global Mindset website (bilingual: English & Uzbek).
+This repository is a starter for the Global Mindset site (bilingual: English / Uzbek).
+It includes Next.js + TypeScript + Tailwind + TinaCMS (git-based) skeleton.
 
-This repo will be populated by the site skeleton (Next.js, TypeScript, Tailwind, TinaCMS) by the developer.
+How to run locally:
+1. npm install
+2. npm run dev
+3. Open http://localhost:3000
 
-Status: Waiting for initial commit to be created by owner so the developer can push the starter files.
+Next steps I can do for you:
+- Add Instagram Reels embedding UI and CMS fields for adding reels links.
+- Add Anchor RSS import for podcast episodes (please provide RSS feed URL).
+- Add TinaCMS content schema and admin UI for posts, podcasts, weekly reports.
+- Prepare Vercel deploy and configure domain www.globalmindset.com.
+
+Please provide:
+- Anchor RSS feed URL
+- Logo file (PNG / SVG)
+- Any branding colors or fonts
