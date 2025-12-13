@@ -1,1 +1,125 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>My Productivity Chat</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #e5ddd5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.chat-container {
+  width: 350px;
+  height: 500px;
+  background: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+.chat-header {
+  background: #075e54;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+.chat-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background: #ece5dd;
+}
+.chat-message {
+  margin: 5px 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+.user {
+  background: #dcf8c6;
+  align-self: flex-end;
+}
+.bot {
+  background: #fff;
+  align-self: flex-start;
+}
+.chat-footer {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+.chat-footer input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+.chat-footer button {
+  margin-left: 5px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: none;
+  background: #075e54;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-header">My Chat</div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-footer">
+    <input type="text" id="chatInput" placeholder="Xabar yoz...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+let chatData = JSON.parse(localStorage.getItem("chatData")) || [];
+
+function renderChat() {
+  const body = document.getElementById("chatBody");
+  body.innerHTML = "";
+  chatData.forEach(msg => {
+    const div = document.createElement("div");
+    div.className = 'chat-message ' + msg.type;
+    div.innerText = msg.text;
+    body.appendChild(div);
+  });
+  body.scrollTop = body.scrollHeight; // scroll pastga
+}
+
+function sendMessage() {
+  const input = document.getElementById("chatInput");
+  const text = input.value.trim();
+  if (!text) return;
+
+  // foydalanuvchi xabari
+  chatData.push({ text: text, type: 'user' });
+
+  // oddiy bot javobi (ixtiyoriy, hozir faqat echo)
+  chatData.push({ text: "Bot: " + text, type: 'bot' });
+
+  input.value = "";
+  localStorage.setItem("chatData", JSON.stringify(chatData));
+  renderChat();
+}
+
+// sahifa yuklanganda chatni render qil
+renderChat();
+</script>
+
+</body>
+</html>
 
